@@ -3,10 +3,6 @@ const url = "https://newsapi.org/v2/everything?q=";
 
 window.addEventListener("load", () => fetchNews("India"));
 
-function reload() {
-    window.location.reload();
-}
-
 async function fetchNews(query) {
     try {
         const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
@@ -14,6 +10,7 @@ async function fetchNews(query) {
             throw new Error('Failed to fetch news');
         }
         const data = await res.json();
+        console.log("Response data:", data); // Log the response data
         bindData(data.articles);
     } catch (error) {
         console.error('Error fetching news:', error.message);
